@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin:0px;
+			padding:0px;
+		}
+		ul{
+			list-style:none;
+		}
+		body{
+			height: 2000px;
+		}
+		#div1{
+			width: 80px;
+			height: 120px;
+			display: none;
+		}
+		#ul{
+			width: 80px;
+			height: 120px;
+			border:1px solid #ccc;
+		}
+		#ul li{
+			width: 80px;
+			height: 36px;
+			text-align: center;
+			line-height: 40px;
+			border-bottom:1px dotted #ccc;
+		}
+		#ul li:hover{
+			background: #ccc;
+			color:#000;
+		}
+	</style>
+</head>
+<body>
+	<div id="div1">
+		<ul id="ul">
+			<li>caidan1</li>
+			<li>caidan2</li>
+			<li>caidan3</li>
+		</ul>
+	</div>	
+	<script type="text/javascript">
+		document.body.oncontextmenu=function(e){
+			e = e || event;
+			console.log(e.clientX + ',' + e.clientY);
+			var odiv1 = document.getElementById('div1');
+			//var ali = getElementByTagName('li');
+			odiv1.style.display='block';
+			odiv1.style.position='absolute';
+			odiv1.style.left=e.clientX + 'px';
+			odiv1.style.top=e.clientY + 'px';
+			return false;
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		body{
+			height: 10000px;
+		}
+		#header{
+			height: 100px;
+			width: 100%;
+			background: gray;
+		}
+		#search{
+			height: 30px;
+			width: 100%;
+			background: red;
+		}
+		.fix{
+			position: fixed;
+			top:0;
+			left:0;
+		}
+	</style>
+</head>
+<body>
+	<div id="header"></div>
+	<div id="search"></div>
+
+	<script type="text/javascript">
+		var oSearch = document.getElementById('search');
+		var iSearchTop = oSearch.offsetTop;
+		var bIsFixed = false;//标志位，标识是否固定
+		window.onscroll = function () {
+			//var iSearchTop = oSearch.offsetTop;
+			var iScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+			if(iScrollTop >= iSearchTop && !bIsFixed){
+				/*oSearch.style.position = "fixed";
+				oSearch.style.top = 0;
+				oSearch.style.left = 0;*/
+				oSearch.className='fix';
+				bIsFixed = true;
+				console.log('11=='+Math.random());
+			}else if(iScrollTop < iSearchTop && bIsFixed){
+				//oSearch.style.position = 'static';
+				oSearch.className='';
+				bIsFixed = false;
+				console.log('22=='+Math.random());
+			}
+		};
+	</script>
+</body>
+</html>

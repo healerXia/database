@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="div1">
+		<h1 id="h1">hhhhhhhhhh</h1>
+		<p>ppppppppppppp</p>
+	</div>
+	<!-- 1.next()找到下一个兄弟 -->
+	<!-- 2.first()找到第一孩子 -->
+	<script type="text/javascript">
+		var oDiv = document.getElementById('div1');
+		var oH1 = document.getElementById('h1');
+		function next(elem){
+			do{
+				elem = elem.nextSibling;
+			}while(elem && elem.nodeType != 1);
+			return elem;
+		}
+		var nextSB = next(oH1);
+		console.log(nextSB);
+
+		function first(elem){
+			elem = elem.firstChild;
+			return elem && elem.nodeType == 1 ? elem : next(elem);
+			}
+		console.log(first(oDiv));
+	</script>
+</body>
+</html>

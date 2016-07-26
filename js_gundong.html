@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>gundong</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		ul,ol{
+			list-style: none;
+		}
+		#div{
+			width: 270px;
+			height: 300px;
+			background: #ccc;
+			margin:100px auto;
+			position: relative;
+			overflow: hidden; 
+		}
+		#tab{
+			width: 760px;
+			position: absolute;
+			left:0;
+			top:30px;
+		}
+		#tab li{
+			width: 80px;
+			height: 120px;
+			line-height: 120px;
+			text-align: center;
+			color: #fff;
+			float: left;
+			margin-right: 10px;
+			background: #000;
+		}
+		#arrows{
+			width: 270px;
+			position: absolute;
+			top:220px;
+			left:86px;
+		}
+		#arrows a{
+			display: inline-block;
+			width: 40px;
+			height: 26px;
+			line-height: 26px;
+			text-align: center;
+			float: left;
+			margin-right: 10px;
+			background: red;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div id="div">
+		<ul id="tab">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+		<div id="arrows">
+			<a id="left">向左</a>
+			<a id="right">向右</a>
+		</div>
+	</div>
+	<script type="text/javascript">
+		oTab = document.getElementById('tab');
+		aLi = document.getElementsByTagName('li');
+		oLeft = document.getElementById('left');
+		oRight = document.getElementById('right');
+		var speed = 10;
+		setInterval(function(){
+			oTab.style.left = oTab.offsetLeft - speed + 'px';
+			if(parseInt(oTab.style.left) <= -oTab.offsetWidth/2){
+				oTab.style.left = 0;
+			}
+			if(parseInt(oTab.style.left) > 0){
+				oTab.style.left = -oTab.offsetWidth/2 + 'px';
+			}
+		},50);
+		oLeft.onmouseover = oRight.onmouseover = function moveleft() {
+			// body...
+			if(this==oLeft){
+				speed=10;
+			}else if(this==oRight){
+				speed=-10;
+			}
+		}
+		
+		
+	</script>
+</body>
+</html>

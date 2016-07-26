@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			padding:0;
+			margin:0; 
+		}
+		img{
+			border: 0;
+		}
+		a{
+			text-decoration: none;
+		}
+		#container{
+			width: 570px;
+			height: 500px;
+			margin:50px auto;
+			overflow: hidden;
+		}
+		#big-img{
+			width: 570px;
+			height: 400px;
+			position: relative;
+		}
+		#big-img img{
+            width: 570px;
+			height: 400px;
+			position: absolute;
+		}
+		#info{
+			width: 570px;
+			height: 30px;
+			background: #000;
+			opacity: 0.5;
+			z-index: 9;
+			position: absolute;
+			bottom: 0;
+			color: #fff;
+			line-height: 30px;
+		}
+		#info span{
+			float: right;
+			margin-right: 10px;
+		}
+		#left,#right{
+			width: 19px;
+			height: 16px;
+			display: inline-block;
+			position: absolute;
+			top:50%;
+			margin-top: -30px;
+			z-index: 9;
+			background-image:url(img/arrow.jpg) ;
+			background-repeat:no-repeat ;
+			opacity: 0;
+			filter: alpha(opacity:0);
+		}
+		#left{
+			left:10px;
+			background-position:0 -16px ;
+		}
+		#right{
+			right: 10px;
+			background-position:0 0 ;
+		}
+		#small-img{
+			width: 1130px;
+			height: 100px;
+			background: #ccc;
+
+		}
+		#small-img img{
+			width: 130px;
+			height: 80px;
+			float: left;
+			margin:10px 0px 10px 10px;
+		}
+		
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div id="big-img">
+			<img src="img/1.jpg" alt="" style="z-index: 8">
+			<img src="img/2.jpg" alt="" style="z-index: 7">
+			<img src="img/3.jpg" alt="" style="z-index: 6">
+			<img src="img/4.jpg" alt="" style="z-index: 5">
+			<img src="img/5.jpg" alt="" style="z-index: 4">
+			<img src="img/6.jpg" alt="" style="z-index: 3">
+			<img src="img/7.jpg" alt="" style="z-index: 2">
+			<img src="img/8.jpg" alt="" style="z-index: 1">
+			<span id="left"></span>
+			<span id="right"></span>
+			<div id="info" style="z-index: 9">
+				<span id="total-page">/ 8</span>
+				<span id="curr-page">1</span>
+			</div>
+		</div>
+		<div id="small-img">
+			<img src="img/1.jpg" alt="">
+			<img src="img/2.jpg" alt="">
+			<img src="img/3.jpg" alt="">
+			<img src="img/4.jpg" alt="">
+			<img src="img/5.jpg" alt="">
+			<img src="img/6.jpg" alt="">
+			<img src="img/7.jpg" alt="">
+			<img src="img/8.jpg" alt="">
+		</div>
+	</div>
+	<script src='wichung-1.0.js'></script>
+	<script type="text/javascript">
+		(function(){
+			var oBigImg = id('big-img');
+			var aImgs = tag('img',oBigImg);
+			var oLeft = id('left');
+			var oRight = id('right');
+			var nowIndex = 0;
+			var zIndex = 9;
+			var oInfo = id('info');
+			oLeft.onmouseover = oRight.onmouseover = function(){
+				animate(this,{opacity:100});
+			};
+			oLeft.onmouseout = oRight.onmouseout = function(){
+				animate(this,{opacity:0})
+			};
+			// for(var i=0;i<aImgs.length;i++){
+			// 	aImgs[i].style.zIndex = aImgs.length - i;
+			// }
+			oLeft.onclick = oRight.onclick = function(){
+				if(this == oRight){
+					nowIndex++;
+					if(nowIndex == aImgs.length){
+						nowIndex = 0;
+					}
+				}else{
+					nowIndex--;
+					if(nowIndex == -1){
+						nowIndex = aImgs.length-1;
+					}
+				}
+				aImgs[nowIndex].style.opacity = 0;
+				aImgs[nowIndex].style.zIndex = zIndex++; 
+				oLeft.style.zIndex = zIndex++;
+				oRight.style.zIndex = zIndex++;
+				oInfo.style.zIndex = zIndex++;
+				animate(aImgs[nowIndex], {opacity:100});
+			}
+		})();
+		
+	</script>
+</body>
+</html>

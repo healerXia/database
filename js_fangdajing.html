@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>fangdajing</title> 
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		#small-pic{
+			width: 200px;
+			height: 200px;
+			float: left;
+			margin-right:10px;
+			position: relative;
+		}
+		#drag{
+			width: 80px;
+			height: 80px;
+			background: #ccc;
+            display: none; 
+			z-index: 1;
+			opacity:0.5;     
+            filter:alpha(opacity=80);
+            position: absolute;
+            left:0;
+            top:0;
+		}
+		#big-pic{
+			width: 200px;
+			height: 200px;
+			overflow: hidden;
+			display: none;
+			position: relative;
+		}
+		#big-img{
+			width: 500px;
+			height: 500px;
+			float:left;
+			position: absolute;
+		}
+		#mask{
+			width: 200px;
+			height: 200px;
+			background: #f00;
+			opacity:0;    
+  			filter:alpha(opacity=0); 
+			z-index: 2;
+			position: absolute;
+			top:0;
+			left:0;
+		}
+	</style>
+</head>
+<body>
+	<div id="small-pic">
+		<img src="img/05.jpg">
+		<div id="drag"></div>
+		<div id="mask"></div>
+	</div>
+	<div id="big-pic">
+		<img src="img/05.jpg" id="big-img">
+	</div>
+
+	<script type="text/javascript">
+		var oDrag = document.getElementById('drag');
+		var oBigpic = document.getElementById('big-pic');
+		var oSmallpic = document.getElementById('small-pic');
+		var oBigimg = document.getElementById('big-img');
+		var oMask = document.getElementById('mask');
+		oMask.onmouseover = function(e){
+			oDrag.style.display = 'block';
+			oBigpic.style.display = 'block';
+		}
+		oMask.onmouseout = function(){
+			oDrag.style.display = 'none';
+			oBigpic.style.display = 'none';
+			oDrag.style.left = 0;
+			oDrag.style.top = 0;
+		}
+		oMask.onmousemove =function(e){
+				//定位小块
+				e = e || event;
+				var X = e.clientX - oDrag.offsetWidth/2;
+			    var Y = e.clientY - oDrag.offsetHeight/2;
+			    if(X > (oMask.offsetWidth - oDrag.offsetWidth)){
+			    	X = oMask.offsetWidth - oDrag.offsetWidth;
+			    }
+			    if(X < 0){
+			    	X = 0;
+			    }
+			    if(Y > (oMask.offsetHeight - oDrag.offsetHeight)){
+			    	Y = oMask.offsetHeight - oDrag.offsetHeight;
+			    }
+			    if(Y < 0){
+			    	Y = 0;
+			    }
+			    oDrag.style.left = X +'px';
+				oDrag.style.top = Y +'px';
+				//定位大图片
+				var SX = (e.clientX - oDrag.offsetWidth/2) / (oSmallpic.offsetWidth - oDrag.offsetWidth);
+				var SY = (e.clientY - oDrag.offsetHeight/2) / (oSmallpic.offsetHeight - oDrag.offsetHeight);
+
+				oBigimg.style.left = -SX * (oBigimg.offsetWidth - oBigpic.offsetWidth) + 'px';
+				oBigimg.style.top = -SY * (oBigimg.offsetHeight - oBigpic.offsetHeight) + 'px';
+				console.log("11"+oBigimg.style.left);
+		}
+	</script> 
+</body>
+</html>

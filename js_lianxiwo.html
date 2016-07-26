@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>lianxiwo</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			height: 10000px;
+		}
+		#div1{
+			width: 200px;
+			height: 300px;
+			background: #ccc;
+			position: fixed;
+			left:-200px;
+			top:200px;
+		}
+		#tip{
+			width: 60px;
+			height: 300px;
+			line-height: 300px;
+			text-align: center;
+			background: #f00;
+			position: absolute;
+			left:200px;
+			top:0px;
+			
+		}
+		
+	</style>
+</head>
+<body>
+	<div id="div1">
+		<div id="tip">联系我</div>
+	</div>
+
+	<script type="text/javascript">
+		var oDiv = document.getElementById('div1');
+		var timer;
+		oDiv.onmouseover = function(){
+			clearInterval(timer);
+			timer = setInterval(function(){
+				if(oDiv.offsetLeft >= 0){
+					clearInterval(timer);
+				}
+				else{
+					oDiv.style.left = oDiv.offsetLeft + 10 +'px';
+				}
+			},30);
+		};
+		oDiv.onmouseout = function(){
+			clearInterval(timer);
+			timer = setInterval(function(){
+				if(oDiv.offsetLeft <= -oDiv.offsetWidth){
+					clearInterval(timer);
+				}
+				else{
+					oDiv.style.left = oDiv.offsetLeft - 10 +'px';
+				}
+			},30);
+
+		};
+
+
+	</script>
+</body>
+</html>

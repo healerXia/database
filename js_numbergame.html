@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>numbergame</title>
+</head>
+<body>
+	
+
+
+	<script type="text/javascript">
+		function numbergame(){
+			var a = new Array();
+			var m=0;
+			for(var i = 0 ; i < 3 ; i++){
+				a[i]=Math.round(Math.random()*9);
+				document.write(a[i] + "&nbsp");
+				if(a[i]==8){
+					m++;
+				}
+			}
+				var n=m/3;
+				document.write("获胜率：" + n);
+		}
+		numbergame();
+	</script>
+</body>
+</html>
